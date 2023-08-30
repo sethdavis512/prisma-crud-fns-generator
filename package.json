@@ -1,11 +1,8 @@
 {
-  "version": "0.1.0",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "bin": {
-    "prisma-crud-fns-generator": "dist/index.js"
-  },
   "files": [
     "dist",
     "src"
@@ -59,6 +56,7 @@
     "@inquirer/prompts": "^3.0.4",
     "@prisma/client": "4.16.1",
     "@prisma/generator-helper": "^5.2.0",
+    "@prisma/internals": "^5.2.0",
     "lodash": "^4.17.21",
     "prisma": "^5.2.0"
   }

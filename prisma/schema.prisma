@@ -9,6 +9,7 @@ generator client {
 
 generator crud {
     provider = "node ./dist/index.js"
+    output   = "crud-fns"
 }
 
 model User {
