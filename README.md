@@ -1,8 +1,10 @@
 # Prisma CRUD Fns Generator
 
-## Idea
+## Description
 
 Interpret a Prisma schema and generate common CRUD functions to be used in a web app.
+
+Inspired by [prisma-json-schema-generator](https://github.com/valentinpalkovic/prisma-json-schema-generator).
 
 ## Getting started
 
@@ -25,6 +27,70 @@ generator crud {
 ```bash
 prisma generate
 ```
+
+Input:
+
+```prisma
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator crud {
+    provider = "prisma-crud-fns-generator"
+}
+
+model User {
+    id    String @id @default(cuid())
+    email String @unique
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    password Password?
+    notes    Note[]
+}
+
+model Password {
+    hash String
+
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    userId String @unique
+}
+
+model Note {
+    id    String @id @default(cuid())
+    title String
+    body  String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    userId String
+}
+```
+
+Output:
+```
+app
+└── models
+    ├── note.server.ts
+    ├── password.server.ts
+    └── user.server.ts
+```
+
+Each file will be based off of the `note.server.ts` [model](https://github.com/remix-run/indie-stack/blob/main/app/models/note.server.ts) from Remix's Indie stack.
+
+## Roadmap
+
+- Write better documentation 🙃
+- Make output directory customizable
+- Make template customizable
 
 ## Development
 
