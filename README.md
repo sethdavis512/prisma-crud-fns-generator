@@ -84,7 +84,7 @@ app
     └── user.server.ts
 ```
 
-Each file will be based off of the `note.server.ts` [model](https://github.com/remix-run/indie-stack/blob/main/app/models/note.server.ts) from Remix's Indie stack.
+The template used is based off of the `note.server.ts` [model](https://github.com/remix-run/indie-stack/blob/main/app/models/note.server.ts) from Remix's Indie stack.
 
 ## Roadmap
 
